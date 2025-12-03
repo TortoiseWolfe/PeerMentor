@@ -1,0 +1,83 @@
+name: Create Wednesday Session Issues
+
+on:
+  schedule:
+    # 3:45 PM Eastern (19:45 UTC during EDT, runs 1hr early during EST)
+    - cron: '45 19 * * 3'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  create-issues:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+
+    steps:
+      - name: Get formatted date
+        id: date
+        run: echo "date=$(TZ='America/New_York' date +'%B %d, %Y')" >> $GITHUB_OUTPUT
+
+      - name: Create Peer Programming Issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `Peer Programming Session - ${{ steps.date.outputs.date }}`,
+              labels: ['session'],
+              body: `## Start
+            - [ ] Check in at [#peer-mentor-hub](https://discord.com/channels/728714241242169406/1171503496915333131) (tag coordinator)
+            - [ ] Announce in [TechJoy #general](https://discord.com/channels/1246558669269762069/1246558669722882129) that you're going live
+            - [ ] Announce in [Joy of Coding #general](https://discord.com/channels/728714241242169406/728714241242169409) that you're going live
+            - [ ] Join the [Voice channel](https://discord.com/channels/1246558669269762069/1246558669722882130)
+
+            ## During
+            - [ ] Greet students, ask what they're working on
+            - [ ] Guide with questions—don't give direct answers
+            - [ ] If no students join, stay in channel & work on your own code
+            - [ ] Can answer @help tickets if voice channel is quiet
+
+            ## End
+            - [ ] Post summary in [#peer-mentor-hub](https://discord.com/channels/728714241242169406/1171503496915333131) (questions answered, attendance, patterns noticed)
+            - [ ] Check out by tagging coordinator
+
+            ---
+
+            ### Session Notes
+            _Add any notes, questions answered, or patterns noticed here_`
+            });
+
+      - name: Create Help Tickets Issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `@Help Tickets Session - ${{ steps.date.outputs.date }}`,
+              labels: ['session'],
+              body: `## Start
+            - [ ] Check in at [#peer-mentor-hub](https://discord.com/channels/728714241242169406/1171503496915333131)
+            - [ ] Log into [Asana → Discord @Help Questions](https://app.asana.com/1/1205445731086278/project/1206601659692567/board/1206601969654100)
+
+            ## Process New Requests (bottom to top)
+            - [ ] Read ticket → check Discord for updates/edits
+            - [ ] **Already resolved** → congratulate, assign self, move to Done
+            - [ ] **Needs admin** → respond with escalation message, assign to coordinator, tag in Discord
+            - [ ] **You can help** → @mention student, guide (don't give full answers), assign self, move to In-Progress
+            - [ ] **Unfamiliar topic** → comment that you looked but lack expertise, leave unassigned
+
+            ## Check In-Progress
+            - [ ] Follow up on stale tickets
+            - [ ] Close confirmed resolutions
+            - [ ] **After 8 days unresolved** → tag student, link prior answer, request new @help if still stuck, close ticket
+
+            ## End
+            - [ ] Tag coordinator with any tickets needing admin/escalation
+
+            ---
+
+            ### Session Notes
+            _Tickets handled, escalations, patterns noticed_`
+            });
