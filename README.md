@@ -1,145 +1,68 @@
-# SpecKit Project Template
+# Peer Mentor Session Checklist
 
-Constitution  
-Specify  
-Clarify  
-Plan  
-Checklist  
-Task  
-Analyze  
-Implement  
+Quick reference for TechJoy Peer Mentors. Full procedures in [Peer Mentor SOP.docx](./Peer%20Mentor%20SOP.docx).
 
-This template provides a Docker-based setup for [GitHub SpecKit](https://github.com/github/spec-kit) - a spec-driven development toolkit that helps you create, plan, and implement features using AI-assisted workflows.
+---
 
-## What This Template Provides
+## Weekly: Peer Programming (1 hr)
 
-- **No local Python/UV required** - Everything runs in Docker containers
-- **Auto-installation** - SpecKit installs automatically on first use
-- **Claude Code integration** - Slash commands for spec-driven development
-- **Project templates** - Pre-configured structure for specifications, plans, and tasks
+### Start
+- [ ] Check in at [#peer-mentor-hub](https://discord.com/channels/728714241242169406/1171503496915333131) (tag coordinator)
+- [ ] Announce in [TechJoy #general](https://discord.com/channels/1246558669269762069/1246558669722882129) that you're going live
+- [ ] Announce in [Joy of Coding #general](https://discord.com/channels/728714241242169406/728714241242169409) that you're going live
+- [ ] Join the [Voice channel](https://discord.com/channels/1246558669269762069/1246558669722882130)
 
-## Requirements
+### During
+- [ ] Greet students, ask what they're working on
+- [ ] Guide with questions—don't give direct answers
+- [ ] If no students join, stay in channel & work on your own code
+- [ ] Can answer @help tickets if voice channel is quiet
 
-- Docker
-- Docker Compose
+### End
+- [ ] Post summary in [#peer-mentor-hub](https://discord.com/channels/728714241242169406/1171503496915333131) (questions answered, attendance, patterns noticed)
+- [ ] Check out by tagging coordinator
 
-That's it! No Python, UV, or other dependencies needed on your local machine.
+---
 
-## Quick Start
+## Weekly: @Help Tickets (1 hr)
 
-### 1. Create a New Project
+### Start
+- [ ] Check in at [#peer-mentor-hub](https://discord.com/channels/728714241242169406/1171503496915333131)
+- [ ] Log into [Asana → Discord @Help Questions](https://app.asana.com/1/1205445731086278/project/1206601659692567/board/1206601969654100)
 
-```bash
-# Copy the template to your new project location
-cp -r /home/turtle_wolfe/repos/speckit-template /path/to/your-new-project
-cd /path/to/your-new-project
+### Process New Requests (bottom to top)
+- [ ] Read ticket → check Discord for updates/edits
+- [ ] **Already resolved** → congratulate, assign self, move to Done
+- [ ] **Needs admin** → respond with escalation message, assign to coordinator, tag in Discord
+- [ ] **You can help** → @mention student, guide (don't give full answers), assign self, move to In-Progress
+- [ ] **Unfamiliar topic** → comment that you looked but lack expertise, leave unassigned
 
-# Run any specify command - this auto-installs everything on first run
-./specify --help
-```
+### Check In-Progress
+- [ ] Follow up on stale tickets
+- [ ] Close confirmed resolutions
+- [ ] **After 8 days unresolved** → tag student, link prior answer, request new @help if still stuck, close ticket
 
-### 2. What Happens on First Run
+### End
+- [ ] Tag coordinator with any tickets needing admin/escalation
 
-When you run `./specify` for the first time:
+---
 
-1. **Installs SpecKit** - Downloads and installs SpecKit CLI in `.speckit/` directory
-2. **Initializes Project** - Creates `.specify/` with templates and configuration
-3. **Sets up Claude Code** - Adds slash commands to `.claude/commands/`
+## Monthly Commitments
+- [ ] Attend Peer Mentor leadership meeting (1 hr)
+- [ ] Attend one life skills session (1 hr)
 
-This takes a minute or two. Subsequent runs are instant.
+---
 
-## Available Slash Commands
+## Quick Links
 
-After initialization, use these commands in Claude Code:
+| Resource | Link |
+|----------|------|
+| #peer-mentor-hub | [Open](https://discord.com/channels/728714241242169406/1171503496915333131) |
+| TechJoy #general | [Open](https://discord.com/channels/1246558669269762069/1246558669722882129) |
+| Joy of Coding #general | [Open](https://discord.com/channels/728714241242169406/728714241242169409) |
+| Voice Channel | [Join](https://discord.com/channels/1246558669269762069/1246558669722882130) |
+| Asana @Help Project | [Open in Asana](https://app.asana.com/1/1205445731086278/project/1206601659692567/board/1206601969654100) |
 
-### Core Workflow
+---
 
-1. `/speckit.constitution` - Establish project principles and values
-2. `/speckit.specify` - Create baseline specification for features
-3. `/speckit.plan` - Create detailed implementation plan
-4. `/speckit.tasks` - Generate actionable task list
-5. `/speckit.implement` - Execute implementation
-
-### Optional Enhancement Commands
-
-- `/speckit.clarify` - Ask structured questions to clarify requirements (run before planning)
-- `/speckit.analyze` - Cross-artifact consistency analysis (run after tasks, before implementation)
-- `/speckit.checklist` - Generate quality checklists (run after planning)
-
-## Using the Specify CLI
-
-You can also use SpecKit's CLI directly:
-
-```bash
-./specify --help           # Show help
-./specify init --help      # Show initialization options
-./specify check            # Check required tools
-```
-
-## Updating SpecKit
-
-To update to the latest version of SpecKit:
-
-```bash
-./specify update
-```
-
-This removes the current installation and reinstalls from the latest version on GitHub.
-
-## File Structure
-
-```
-your-project/
-├── .claude/              # Claude Code configuration and slash commands
-│   └── commands/         # Auto-generated slash commands
-├── .specify/             # SpecKit templates and configuration
-│   ├── memory/           # Project constitution
-│   ├── templates/        # Spec, plan, and task templates
-│   └── scripts/          # Helper scripts
-├── .speckit/             # SpecKit installation (auto-generated)
-├── docker-compose.yml    # Docker configuration
-├── specify*              # Main wrapper script
-├── .gitignore           # Excludes .speckit/ and .specify/
-└── README.md            # This file
-```
-
-### What to Commit to Git
-
-**Commit these:**
-- `docker-compose.yml`
-- `specify` script
-- `README.md`
-- `.gitignore`
-
-**Don't commit these** (already in .gitignore):
-- `.speckit/` - Installation files, regenerated automatically
-- `.specify/` - Templates and config, regenerated on init
-
-## How It Works
-
-The `specify` wrapper script:
-
-1. Checks if Docker is running
-2. Installs SpecKit in `.speckit/` if not present
-3. Initializes project structure in `.specify/` if not present
-4. Runs your command in a Docker container
-
-All SpecKit files stay in your project directory, persisting between runs.
-
-## Troubleshooting
-
-### "Cannot connect to Docker daemon"
-Make sure Docker is running.
-
-### Permission errors on files
-Run `./specify update` to clean and reinstall.
-
-### Slash commands not appearing
-Make sure you're using Claude Code and the `.claude/commands/` directory exists.
-
-## Learn More
-
-- [SpecKit Documentation](https://github.com/github/spec-kit)
-- [Spec-Driven Development Guide](https://github.com/github/spec-kit/blob/main/docs/spec-driven-development.md)
-- [Claude Code](https://docs.anthropic.com/en/docs/claude-code)
-# SpecKitTemplate
+**Schedule changes?** Notify coordinator in #peer-mentor-hub at least 1 week ahead.
