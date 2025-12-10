@@ -7,10 +7,16 @@ assignees: ''
 ---
 
 ## Start
-- [ ] Check in at [#peer-mentor-hub](https://discord.com/channels/728714241242169406/1171503496915333131) (tag coordinator)
-- [ ] Announce in [TechJoy #general](https://discord.com/channels/1246558669269762069/1246558669722882129) that you're going live
-- [ ] Announce in [Joy of Coding #general](https://discord.com/channels/728714241242169406/728714241242169409) that you're going live
-- [ ] Join the [Voice channel](https://discord.com/channels/1246558669269762069/1246558669722882130)
+- [ ] Join the <a href="https://discord.com/channels/1246558669269762069/1246558669722882130" target="_blank">Voice channel</a>
+- [ ] Check in at <a href="https://discord.com/channels/728714241242169406/1171503496915333131" target="_blank">#peer-mentor-hub</a> (tag coordinator)
+- [ ] Announce in <a href="https://discord.com/channels/1246558669269762069/1246558669722882129" target="_blank">TechJoy #general</a>
+  ```
+  🎙️ Peer programming session starting now! Drop by the voice channel if you want to code together or have questions.
+  ```
+- [ ] Announce in <a href="https://discord.com/channels/728714241242169406/728714241242169409" target="_blank">Joy of Coding #general</a>
+  ```
+  🎙️ Peer programming session live in TechJoy! Join us in the voice channel to code together or get help with your projects.
+  ```
 
 ## During
 - [ ] Greet students, ask what they're working on
@@ -19,7 +25,7 @@ assignees: ''
 - [ ] Can answer @help tickets if voice channel is quiet
 
 ## End
-- [ ] Post summary in [#peer-mentor-hub](https://discord.com/channels/728714241242169406/1171503496915333131) (questions answered, attendance, patterns noticed)
+- [ ] Post summary in <a href="https://discord.com/channels/728714241242169406/1171503496915333131" target="_blank">#peer-mentor-hub</a> (questions answered, attendance, patterns noticed)
 - [ ] Check out by tagging coordinator
 
 ---

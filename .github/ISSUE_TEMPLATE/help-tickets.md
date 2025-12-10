@@ -7,8 +7,8 @@ assignees: ''
 ---
 
 ## Start
-- [ ] Check in at [#peer-mentor-hub](https://discord.com/channels/728714241242169406/1171503496915333131)
-- [ ] Log into [Asana → Discord @Help Questions](https://app.asana.com/1/1205445731086278/project/1206601659692567/board/1206601969654100)
+- [ ] Check in at <a href="https://discord.com/channels/728714241242169406/1171503496915333131" target="_blank">#peer-mentor-hub</a>
+- [ ] Log into <a href="https://app.asana.com/1/1205445731086278/project/1206601659692567/board/1206601969654100" target="_blank">Asana → Discord @Help Questions</a>
 
 ## Process New Requests (bottom to top)
 - [ ] Read ticket → check Discord for updates/edits
