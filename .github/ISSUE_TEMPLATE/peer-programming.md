@@ -8,7 +8,6 @@ assignees: ''
 
 ## Start
 - [ ] Join the <a href="https://discord.com/channels/1246558669269762069/1246558669722882130" target="_blank">Voice channel</a>
-- [ ] Check in at <a href="https://discord.com/channels/728714241242169406/1171503496915333131" target="_blank">#peer-mentor-hub</a> (tag coordinator)
 - [ ] Announce in <a href="https://discord.com/channels/1246558669269762069/1246558669722882129" target="_blank">TechJoy #general</a>
   ```
   🎙️ Peer programming session starting now! Drop by the voice channel if you want to code together or have questions.
@@ -17,6 +16,7 @@ assignees: ''
   ```
   🎙️ Peer programming session live in TechJoy! Join us in the voice channel to code together or get help with your projects.
   ```
+- [ ] Check in at <a href="https://discord.com/channels/728714241242169406/1171503496915333131" target="_blank">#peer-mentor-hub</a> (tag coordinator)
 
 ## During
 - [ ] Greet students, ask what they're working on
