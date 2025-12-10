@@ -7,10 +7,16 @@ Quick reference for TechJoy Peer Mentors. Full procedures in [Peer Mentor SOP.do
 ## Weekly: Peer Programming (1 hr)
 
 ### Start
-- [ ] Check in at [#peer-mentor-hub](https://discord.com/channels/728714241242169406/1171503496915333131) (tag coordinator)
-- [ ] Announce in [TechJoy #general](https://discord.com/channels/1246558669269762069/1246558669722882129) that you're going live
-- [ ] Announce in [Joy of Coding #general](https://discord.com/channels/728714241242169406/728714241242169409) that you're going live
-- [ ] Join the [Voice channel](https://discord.com/channels/1246558669269762069/1246558669722882130)
+- [ ] Join the <a href="https://discord.com/channels/1246558669269762069/1246558669722882130" target="_blank">Voice channel</a>
+- [ ] Check in at <a href="https://discord.com/channels/728714241242169406/1171503496915333131" target="_blank">#peer-mentor-hub</a> (tag coordinator)
+- [ ] Announce in <a href="https://discord.com/channels/1246558669269762069/1246558669722882129" target="_blank">TechJoy #general</a>
+  ```
+  🎙️ Peer programming session starting now! Drop by the voice channel if you want to code together or have questions.
+  ```
+- [ ] Announce in <a href="https://discord.com/channels/728714241242169406/728714241242169409" target="_blank">Joy of Coding #general</a>
+  ```
+  🎙️ Peer programming session live in TechJoy! Join us in the voice channel to code together or get help with your projects.
+  ```
 
 ### During
 - [ ] Greet students, ask what they're working on
@@ -19,7 +25,7 @@ Quick reference for TechJoy Peer Mentors. Full procedures in [Peer Mentor SOP.do
 - [ ] Can answer @help tickets if voice channel is quiet
 
 ### End
-- [ ] Post summary in [#peer-mentor-hub](https://discord.com/channels/728714241242169406/1171503496915333131) (questions answered, attendance, patterns noticed)
+- [ ] Post summary in <a href="https://discord.com/channels/728714241242169406/1171503496915333131" target="_blank">#peer-mentor-hub</a> (questions answered, attendance, patterns noticed)
 - [ ] Check out by tagging coordinator
 
 ---
@@ -27,8 +33,8 @@ Quick reference for TechJoy Peer Mentors. Full procedures in [Peer Mentor SOP.do
 ## Weekly: @Help Tickets (1 hr)
 
 ### Start
-- [ ] Check in at [#peer-mentor-hub](https://discord.com/channels/728714241242169406/1171503496915333131)
-- [ ] Log into [Asana → Discord @Help Questions](https://app.asana.com/1/1205445731086278/project/1206601659692567/board/1206601969654100)
+- [ ] Check in at <a href="https://discord.com/channels/728714241242169406/1171503496915333131" target="_blank">#peer-mentor-hub</a>
+- [ ] Log into <a href="https://app.asana.com/1/1205445731086278/project/1206601659692567/board/1206601969654100" target="_blank">Asana → Discord @Help Questions</a>
 
 ### Process New Requests (bottom to top)
 - [ ] Read ticket → check Discord for updates/edits
@@ -57,11 +63,11 @@ Quick reference for TechJoy Peer Mentors. Full procedures in [Peer Mentor SOP.do
 
 | Resource | Link |
 |----------|------|
-| #peer-mentor-hub | [Open](https://discord.com/channels/728714241242169406/1171503496915333131) |
-| TechJoy #general | [Open](https://discord.com/channels/1246558669269762069/1246558669722882129) |
-| Joy of Coding #general | [Open](https://discord.com/channels/728714241242169406/728714241242169409) |
-| Voice Channel | [Join](https://discord.com/channels/1246558669269762069/1246558669722882130) |
-| Asana @Help Project | [Open in Asana](https://app.asana.com/1/1205445731086278/project/1206601659692567/board/1206601969654100) |
+| #peer-mentor-hub | <a href="https://discord.com/channels/728714241242169406/1171503496915333131" target="_blank">Open</a> |
+| TechJoy #general | <a href="https://discord.com/channels/1246558669269762069/1246558669722882129" target="_blank">Open</a> |
+| Joy of Coding #general | <a href="https://discord.com/channels/728714241242169406/728714241242169409" target="_blank">Open</a> |
+| Voice Channel | <a href="https://discord.com/channels/1246558669269762069/1246558669722882130" target="_blank">Join</a> |
+| Asana @Help Project | <a href="https://app.asana.com/1/1205445731086278/project/1206601659692567/board/1206601969654100" target="_blank">Open in Asana</a> |
 
 ---
 
