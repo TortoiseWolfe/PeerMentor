@@ -16,6 +16,7 @@ Quick reference for TechJoy Peer Mentors. Full procedures in [Peer Mentor SOP.do
   ```
   🎙️ Peer programming session live in TechJoy! Join us in the voice channel to code together or get help with your projects.
   ```
+- [ ] Log into <a href="https://app.asana.com/1/1205445731086278/project/1206601659692567/board/1206601969654100" target="_blank">Asana → Discord @Help Questions</a>
 - [ ] Check in at <a href="https://discord.com/channels/728714241242169406/1171503496915333131" target="_blank">#peer-mentor-hub</a> (tag coordinator)
 
 ### During

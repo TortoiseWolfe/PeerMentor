@@ -27,10 +27,11 @@ jobs:
               title: `Peer Programming Session - ${{ steps.date.outputs.date }}`,
               labels: ['session'],
               body: `## Start
-            - [ ] Check in at [#peer-mentor-hub](https://discord.com/channels/728714241242169406/1171503496915333131) (tag coordinator)
+            - [ ] Join the [Voice channel](https://discord.com/channels/1246558669269762069/1246558669722882130)
             - [ ] Announce in [TechJoy #general](https://discord.com/channels/1246558669269762069/1246558669722882129) that you're going live
             - [ ] Announce in [Joy of Coding #general](https://discord.com/channels/728714241242169406/728714241242169409) that you're going live
-            - [ ] Join the [Voice channel](https://discord.com/channels/1246558669269762069/1246558669722882130)
+            - [ ] Log into [Asana → Discord @Help Questions](https://app.asana.com/1/1205445731086278/project/1206601659692567/board/1206601969654100)
+            - [ ] Check in at [#peer-mentor-hub](https://discord.com/channels/728714241242169406/1171503496915333131) (tag coordinator)
 
             ## During
             - [ ] Greet students, ask what they're working on
