@@ -9,6 +9,9 @@
 # Regenerated during initialization
 .specify/
 
+# Environment variables (tokens, secrets)
+.env
+
 # Claude Code may store sensitive data in .claude/
 # Uncomment the line below if you want to exclude it
 # .claude/
