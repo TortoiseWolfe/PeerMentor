@@ -2,8 +2,10 @@ name: Create Wednesday Session Issues
 
 on:
   schedule:
-    # 3:45 PM Eastern (19:45 UTC during EDT, runs 1hr early during EST)
-    - cron: '45 19 * * 3'
+    # Two entries cover both EST (UTC-5) and EDT (UTC-4)
+    # Only the one matching 3:45 PM ET will pass the hour check below
+    - cron: '45 19 * * 3'   # 3:45 PM ET during EDT (Mar-Nov)
+    - cron: '45 20 * * 3'   # 3:45 PM ET during EST (Nov-Mar)
   workflow_dispatch: # Allow manual trigger
 
 jobs:
@@ -13,11 +15,24 @@ jobs:
       issues: write
 
     steps:
+      - name: Check Eastern Time hour
+        id: tz_check
+        run: |
+          HOUR=$(TZ='America/New_York' date +%H)
+          echo "eastern_hour=$HOUR" >> $GITHUB_OUTPUT
+          if [ "$HOUR" = "15" ]; then
+            echo "should_run=true" >> $GITHUB_OUTPUT
+          else
+            echo "should_run=false" >> $GITHUB_OUTPUT
+          fi
+
       - name: Get formatted date
+        if: steps.tz_check.outputs.should_run == 'true' || github.event_name == 'workflow_dispatch'
         id: date
         run: echo "date=$(TZ='America/New_York' date +'%B %d, %Y')" >> $GITHUB_OUTPUT
 
       - name: Create Peer Programming Issue
+        if: steps.tz_check.outputs.should_run == 'true' || github.event_name == 'workflow_dispatch'
         uses: actions/github-script@v7
         with:
           script: |
@@ -27,19 +42,19 @@ jobs:
               title: `Peer Programming Session - ${{ steps.date.outputs.date }}`,
               labels: ['session'],
               body: `## Start
-            - [ ] Join the [Voice channel](https://discord.com/channels/1246558669269762069/1246558669722882130)
-            - [ ] Announce in [TechJoy #general](https://discord.com/channels/1246558669269762069/1246558669722882129):
+            - [ ] Join the <a href="https://discord.com/channels/1246558669269762069/1246558669722882130" target="_blank">Voice channel</a>
+            - [ ] Announce in <a href="https://discord.com/channels/1246558669269762069/1246558669722882129" target="_blank">TechJoy #general</a>:
             \`\`\`
             🎙️ Peer programming session starting now! Drop by the voice channel if you want to code together or have questions.
             https://discord.com/channels/1246558669269762069/1246558669722882130
             \`\`\`
-            - [ ] Announce in [Joy of Coding #general](https://discord.com/channels/728714241242169406/728714241242169409):
+            - [ ] Announce in <a href="https://discord.com/channels/728714241242169406/728714241242169409" target="_blank">Joy of Coding #general</a>:
             \`\`\`
             🎙️ Peer programming session live in TechJoy! Join us in the voice channel to code together or get help with your projects.
             https://discord.com/channels/1246558669269762069/1246558669722882130
             \`\`\`
-            - [ ] Log into [Asana → Discord @Help Questions](https://app.asana.com/1/1205445731086278/project/1206601659692567/board/1206601969654100)
-            - [ ] Check in at [#peer-mentor-hub](https://discord.com/channels/728714241242169406/1171503496915333131) (tag coordinator)
+            - [ ] Log into <a href="https://app.asana.com/1/1205445731086278/project/1206601659692567/board/1206601969654100" target="_blank">Asana → Discord @Help Questions</a>
+            - [ ] Check in at <a href="https://discord.com/channels/728714241242169406/1171503496915333131" target="_blank">#peer-mentor-hub</a> (tag coordinator)
 
             ## During
             - [ ] Greet students, ask what they're working on
@@ -48,7 +63,7 @@ jobs:
             - [ ] Can answer @help tickets if voice channel is quiet
 
             ## End
-            - [ ] Post summary in [#peer-mentor-hub](https://discord.com/channels/728714241242169406/1171503496915333131) (questions answered, attendance, patterns noticed)
+            - [ ] Post summary in <a href="https://discord.com/channels/728714241242169406/1171503496915333131" target="_blank">#peer-mentor-hub</a> (questions answered, attendance, patterns noticed)
             - [ ] Check out by tagging coordinator
 
             ---
@@ -58,6 +73,7 @@ jobs:
             });
 
       - name: Create Help Tickets Issue
+        if: steps.tz_check.outputs.should_run == 'true' || github.event_name == 'workflow_dispatch'
         uses: actions/github-script@v7
         with:
           script: |
@@ -67,8 +83,8 @@ jobs:
               title: `@Help Tickets Session - ${{ steps.date.outputs.date }}`,
               labels: ['session'],
               body: `## Start
-            - [ ] Check in at [#peer-mentor-hub](https://discord.com/channels/728714241242169406/1171503496915333131)
-            - [ ] Log into [Asana → Discord @Help Questions](https://app.asana.com/1/1205445731086278/project/1206601659692567/board/1206601969654100)
+            - [ ] Check in at <a href="https://discord.com/channels/728714241242169406/1171503496915333131" target="_blank">#peer-mentor-hub</a>
+            - [ ] Log into <a href="https://app.asana.com/1/1205445731086278/project/1206601659692567/board/1206601969654100" target="_blank">Asana → Discord @Help Questions</a>
 
             ## Process New Requests (bottom to top)
             - [ ] Read ticket → check Discord for updates/edits
