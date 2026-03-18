@@ -4,8 +4,8 @@ on:
   schedule:
     # Two entries cover both EST (UTC-5) and EDT (UTC-4)
     # Only the one matching 3:45 PM ET will pass the hour check below
-    - cron: '45 19 * * 3'   # 3:45 PM ET during EDT (Mar-Nov)
-    - cron: '45 20 * * 3'   # 3:45 PM ET during EST (Nov-Mar)
+    - cron: '15 19 * * 3'   # ~3:15 PM ET during EDT (Mar-Nov)
+    - cron: '15 20 * * 3'   # ~3:15 PM ET during EST (Nov-Mar)
   workflow_dispatch: # Allow manual trigger
 
 jobs:
