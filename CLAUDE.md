@@ -40,8 +40,7 @@ The workflow at `.github/workflows/create-session-issues.yml` runs every Wednesd
 ```
 .claude/commands/     # SpecKit workflow command definitions
 .github/
-  ISSUE_TEMPLATE/     # Session templates (Peer Programming & Help Tickets)
-  workflows/          # Automated weekly issue creation
+  workflows/          # Automated weekly issue creation + keepalive
 Dockerfile            # SpecKit container image (python:3.12-slim + git + uv)
 docker-compose.yml    # SpecKit container (runs as host user)
 specify               # Wrapper script for SpecKit CLI

@@ -74,4 +74,14 @@ Quick reference for TechJoy Peer Mentors. Full procedures in [Peer Mentor SOP.do
 
 ---
 
+## Missed a Week?
+
+Session issues are created automatically every Wednesday at 3:15 PM ET. If they didn't appear:
+
+1. Open <a href="https://github.com/TortoiseWolfe/PeerMentor/actions/workflows/create-session-issues.yml" target="_blank">Actions → Create Wednesday Session Issues</a>
+2. If a banner says the workflow is disabled, click **Enable workflow** first (also enable <a href="https://github.com/TortoiseWolfe/PeerMentor/actions/workflows/keepalive.yml" target="_blank">Keep Alive</a> while you're there)
+3. Click **Run workflow** → **Run workflow** — both session issues are created with today's date
+
+---
+
 **Schedule changes?** Notify coordinator in #peer-mentor-hub at least 1 week ahead.
