@@ -33,7 +33,7 @@ SpecKit slash commands are available for structured feature development:
 
 ### GitHub Actions
 
-The workflow at `.github/workflows/create-session-issues.yml` runs every Wednesday at 3:45 PM ET, creating two session issues with checklists. Can be triggered manually via `workflow_dispatch`.
+The workflow at `.github/workflows/create-session-issues.yml` runs every Wednesday at 3:15 PM ET, creating two session issues with checklists. Can be triggered manually via `workflow_dispatch`. GitHub disables cron workflows after 60 days without a commit; `.github/workflows/keepalive.yml` resets that timer twice a month, and a disabled workflow must be re-enabled once manually (Actions tab → workflow → "Enable workflow").
 
 ## Architecture
 
@@ -42,7 +42,8 @@ The workflow at `.github/workflows/create-session-issues.yml` runs every Wednesd
 .github/
   ISSUE_TEMPLATE/     # Session templates (Peer Programming & Help Tickets)
   workflows/          # Automated weekly issue creation
-docker-compose.yml    # SpecKit container (Python 3.12)
+Dockerfile            # SpecKit container image (python:3.12-slim + git + uv)
+docker-compose.yml    # SpecKit container (runs as host user)
 specify               # Wrapper script for SpecKit CLI
 README.md             # Quick-reference checklist for mentors
 ```

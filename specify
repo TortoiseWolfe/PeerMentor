@@ -2,32 +2,50 @@
 
 # SpecKit wrapper script
 # Auto-installs SpecKit and initializes project on first run
-# Run './specify update' to update to latest SpecKit version
+# Run './specify update' to reinstall at the pinned SPEC_KIT_REF version
+# (bump SPEC_KIT_REF below to move to a newer release)
 
-# Handle update command
-if [ "$1" = "update" ]; then
-    echo "Updating SpecKit..."
+set -euo pipefail
+cd "$(dirname "$0")"
+
+SPEC_KIT_REF=v0.9.5
+
+# The compose service runs as the host user so generated files stay
+# host-owned; HOST_UID/HOST_GID feed its `user:` mapping.
+HOST_UID="$(id -u)" HOST_GID="$(id -g)"
+export HOST_UID HOST_GID
+
+install_speckit() {
+    echo "Installing SpecKit ${SPEC_KIT_REF}..."
+    docker compose run --rm speckit \
+        uv tool install specify-cli --from "git+https://github.com/github/spec-kit.git@${SPEC_KIT_REF}" \
+        || { rm -rf .speckit; echo "SpecKit install failed" >&2; exit 1; }
+}
+
+init_project() {
+    echo "Initializing SpecKit project..."
+    docker compose run --rm speckit \
+        specify init --here --ai claude --force --ignore-agent-tools \
+        || { rm -rf .specify; echo "SpecKit init failed" >&2; exit 1; }
+}
+
+if [ "${1:-}" = "update" ]; then
     echo "Removing old installation..."
-    docker run --rm -v .:/workspace python:3.12-slim rm -rf /workspace/.speckit /workspace/.specify
-    echo "Reinstalling SpecKit..."
-    docker compose run --rm speckit bash -c "apt-get update -qq && apt-get install -y -qq git > /dev/null 2>&1 && pip install -q uv && uv tool install specify-cli --from git+https://github.com/github/spec-kit.git"
-    echo "Reinitializing project..."
-    docker compose run --rm speckit specify init --here --ai claude --force --ignore-agent-tools
+    rm -rf .speckit .specify
+    install_speckit
+    init_project
     echo "Update complete!"
     exit 0
 fi
 
-# Check if .speckit is installed
-if [ ! -d ".speckit" ]; then
-    echo "Installing SpecKit..."
-    docker compose run --rm speckit bash -c "apt-get update -qq && apt-get install -y -qq git > /dev/null 2>&1 && pip install -q uv && uv tool install specify-cli --from git+https://github.com/github/spec-kit.git"
+# Test for the installed binary, not the directory: a failed install can
+# leave a partial .speckit/ that would otherwise block reinstall forever.
+if [ ! -x ".speckit/bin/specify" ]; then
+    install_speckit
 fi
 
-# Check if project is initialized
-if [ ! -d ".specify" ]; then
-    echo "Initializing SpecKit project..."
-    docker compose run --rm speckit specify init --here --ai claude --force --ignore-agent-tools
+if [ ! -d ".specify/memory" ]; then
+    init_project
 fi
 
-# Run specify command
 docker compose run --rm speckit specify "$@"

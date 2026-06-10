@@ -1,10 +1,18 @@
 services:
   speckit:
-    image: python:3.12-slim
+    build: .
+    # Run as the host user so files written through the bind mount
+    # (.speckit/, .specify/, .claude/commands/) stay host-owned —
+    # the workspace convention forbids sudo on the host.
+    user: "${HOST_UID:-1000}:${HOST_GID:-1000}"
     volumes:
       - .:/workspace
     working_dir: /workspace
     environment:
+      # The mapped uid has no passwd entry in the image, so HOME and the
+      # uv cache must point somewhere writable.
+      - HOME=/tmp
+      - UV_CACHE_DIR=/tmp/uv-cache
       - UV_TOOL_DIR=/workspace/.speckit
       - UV_TOOL_BIN_DIR=/workspace/.speckit/bin
       - PATH=/workspace/.speckit/bin:/usr/local/bin:/usr/bin:/bin

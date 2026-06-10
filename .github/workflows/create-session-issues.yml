@@ -3,9 +3,9 @@ name: Create Wednesday Session Issues
 on:
   schedule:
     # Two entries cover both EST (UTC-5) and EDT (UTC-4)
-    # Only the one matching 3:45 PM ET will pass the hour check below
-    - cron: '15 19 * * 3'   # ~3:15 PM ET during EDT (Mar-Nov)
-    - cron: '15 20 * * 3'   # ~3:15 PM ET during EST (Nov-Mar)
+    # Only the one matching 3:15 PM ET will pass the offset check below
+    - cron: '15 19 * * 3'   # 3:15 PM ET during EDT (Mar-Nov)
+    - cron: '15 20 * * 3'   # 3:15 PM ET during EST (Nov-Mar)
   workflow_dispatch: # Allow manual trigger
 
 jobs:
@@ -15,12 +15,17 @@ jobs:
       issues: write
 
     steps:
-      - name: Check Eastern Time hour
+      - name: Check this cron matches the current Eastern UTC offset
         id: tz_check
+        env:
+          SCHEDULE: ${{ github.event.schedule }}
         run: |
-          HOUR=$(TZ='America/New_York' date +%H)
-          echo "eastern_hour=$HOUR" >> $GITHUB_OUTPUT
-          if [ "$HOUR" = "15" ]; then
+          # Gate on the UTC offset, not the wall-clock hour: GitHub crons can
+          # start 20-40+ minutes late, which an hour check misreads — silently
+          # skipping a week or letting both crons create duplicate issues.
+          OFFSET=$(TZ='America/New_York' date +%z)
+          if { [ "$SCHEDULE" = '15 19 * * 3' ] && [ "$OFFSET" = '-0400' ]; } || \
+             { [ "$SCHEDULE" = '15 20 * * 3' ] && [ "$OFFSET" = '-0500' ]; }; then
             echo "should_run=true" >> $GITHUB_OUTPUT
           else
             echo "should_run=false" >> $GITHUB_OUTPUT
@@ -33,7 +38,7 @@ jobs:
 
       - name: Create Peer Programming Issue
         if: steps.tz_check.outputs.should_run == 'true' || github.event_name == 'workflow_dispatch'
-        uses: actions/github-script@v7
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7.1.0
         with:
           script: |
             await github.rest.issues.create({
@@ -74,7 +79,7 @@ jobs:
 
       - name: Create Help Tickets Issue
         if: steps.tz_check.outputs.should_run == 'true' || github.event_name == 'workflow_dispatch'
-        uses: actions/github-script@v7
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7.1.0
         with:
           script: |
             await github.rest.issues.create({
