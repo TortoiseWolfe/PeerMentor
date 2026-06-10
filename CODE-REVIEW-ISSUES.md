@@ -6,7 +6,7 @@ Systematic review (multi-agent, all findings adversarially verified). Fixes appl
 
 | # | Finding | Status |
 |---|---------|--------|
-| 1 | Both workflows in state `disabled_inactivity` since ~May 20 — no session issues for May 27, Jun 3, Jun 10 | **USER ACTION**: re-enable both in Actions tab (local PAT lacks `Actions: write`) |
+| 1 | Both workflows in state `disabled_inactivity` since ~May 20 — no session issues for May 27, Jun 3, Jun 10 | Fixed 2026-06-10: re-enabled via `gh api -X PUT .../enable`; both `active`. New keepalive dispatched and verified (run succeeded, both timers reset) |
 | 2 | `keepalive.yml` used `gautamkrishnar/keepalive-workflow@v2`, whose repo was TOS-blocked by GitHub on 2025-04-21 — *before the workflow was added*. All 6 runs failed at "Set up job"; the keepalive never worked once | Fixed: rewritten as a first-party `curl PUT .../actions/workflows/{file}/enable` step |
 | 3 | Even if the action had worked: v2 API mode only keeps alive the workflow it runs in (no `workflow_files:` input was set), so `create-session-issues.yml` was never covered; and `time_elapsed: 45` + 1st/21st cron loses the race (first eligible run at day ~63 > 60) | Fixed: replacement re-enables **both** workflows unconditionally every run |
 
@@ -51,6 +51,7 @@ No package.json / test runner exists (docs + automation repo). Validation perfor
 
 ## Remaining user actions
 
-1. **Re-enable both workflows**: Actions tab → each workflow → "Enable workflow" (or grant the PAT `Actions: write` and `PUT /actions/workflows/{file}/enable`). A disabled workflow cannot resurrect itself, and a push alone does not re-enable it.
-2. **Rotate the two GoHighLevel download tokens** embedded in `Peer Mentor SOP.docx` (they bypass the membership paywall and are public).
-3. **Commit & push** these fixes — the keepalive replacement only protects the repo once it's on `main`, and the push also resets the 60-day inactivity clock.
+1. **Rotate the two GoHighLevel download tokens** embedded in `Peer Mentor SOP.docx` (they bypass the membership paywall, are public, persist in git history, and were re-verified live — HTTP 200 — on 2026-06-10). Rotation happens in the GoHighLevel admin (re-uploading the two PDFs generates new tokens); no credential available to automation can do this.
+
+~~Re-enable workflows~~ — done 2026-06-10 via gh CLI (classic `repo`-scope token); verified `active` + successful keepalive run.
+~~Commit & push~~ — done 2026-06-10 (54dbceb), 60-day clock reset.
